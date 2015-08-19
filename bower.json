@@ -1,0 +1,21 @@
+{
+  "name": "untagged-tumblr-posts",
+  "version": "1.0",
+  "authors": [
+    "Alex Chan <alex@alexwlchan.net>"
+  ],
+  "description": "A site for finding untagged posts on Tumblr",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "http://finduntaggedtumblrposts.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.4"
+  }
+}
