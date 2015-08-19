@@ -458,3 +458,57 @@ input.biginput {
   padding: 10px;
   font-size: 18pt;
 }
+
+.styled-select {
+   width: 200px;
+   padding: 5px;
+   margin-left: 5px;
+   margin-right: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border-color: #bbb;
+   border-radius: 3px;
+   height: 38px;
+/*   font-family: Georgia;*/
+/*   color: #c7301f;*/
+}
+
+
+
+
+button {
+  background-color: #fff;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	text-indent:0;
+/*  font: 14pt Avenir, 'Segoe UI', 'Lucida Grande', Lucida, Verdana;*/
+    font-size: 15pt;
+    font-family: Georgia;
+	font-weight:bold;
+	font-style:normal;
+	height:60px;
+	line-height:40px;
+  width:300px;
+  margin-bottom: 10px;
+	text-align:center;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+}
+#untagged_posts_button {
+	border: 3px solid #c7301f;
+	color: #c7301f;
+    margin-top: 45px;
+}
+#untagged_posts_button:hover {
+  border: 3px solid #c7301f;
+  color: #c7301f;
+  position: relative;
+  top: -1px;
+}
+#untagged_posts_button:active {
+	position:relative;
+	top:3px;
+    background-color: green;
+}
