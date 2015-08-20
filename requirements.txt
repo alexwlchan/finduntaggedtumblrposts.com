@@ -1,0 +1,3 @@
+csscompressor==0.9.3
+ghp-import==0.4.1
+htmlmin==0.1.6

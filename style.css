@@ -113,7 +113,7 @@ hr {
 article,
 footer,
 #paginator {
-    max-width: 750px;                   /* page-width */
+    max-width: 800px;                   /* page-width */
     margin-left:  auto;
     margin-right: auto;
     padding-left: 20px;
@@ -454,24 +454,11 @@ h2 {
 input {
   color: #c7301f;
 }
-input.biginput {
+input {
   padding: 10px;
   font-size: 18pt;
 }
 
-.styled-select {
-   width: 200px;
-   padding: 5px;
-   margin-left: 5px;
-   margin-right: 5px;
-   font-size: 16px;
-   line-height: 1;
-   border-color: #bbb;
-   border-radius: 3px;
-   height: 38px;
-/*   font-family: Georgia;*/
-/*   color: #c7301f;*/
-}
 
 
 
@@ -483,20 +470,20 @@ button {
 	border-radius:8px;
 	text-indent:0;
 /*  font: 14pt Avenir, 'Segoe UI', 'Lucida Grande', Lucida, Verdana;*/
-    font-size: 15pt;
+    font-size: 16pt;
     font-family: Georgia;
 	font-weight:bold;
 	font-style:normal;
 	height:60px;
 	line-height:40px;
-  width:300px;
+  width:350px;
   margin-bottom: 10px;
 	text-align:center;
   vertical-align: middle;
   margin-left: auto;
   margin-right: auto;
 }
-#untagged_posts_button {
+button {
 	border: 3px solid #c7301f;
 	color: #c7301f;
     margin-top: 45px;
@@ -510,7 +497,7 @@ button {
 #untagged_posts_button:active {
 	position:relative;
 	top:3px;
-    background-color: green;
+    background-color: #f1aea7;
 }
 
 h1 {
@@ -520,4 +507,29 @@ h1 {
 .option {
     font-style: italic;
     font-weight: bold;
+}
+
+
+@media screen and (max-width: 500px) {
+  .github-banner { display: none; }
+  button { font-size: 14pt; margin-top: 5px; max-width: 280px; }
+  #brand a { font-size: 1.2em; }
+  input { font-size: 16pt; }
+  #header_text { padding: 1px 20px;}
+}
+
+@media screen and (min-width: 500px) {
+    .styled-select {
+       width: 200px;
+       padding: 5px;
+       margin-left: 5px;
+       margin-right: 5px;
+       font-size: 16px;
+       line-height: 1;
+       border-color: #bbb;
+       border-radius: 3px;
+       height: 38px;
+    /*   font-family: Georgia;*/
+    /*   color: #c7301f;*/
+    }
 }

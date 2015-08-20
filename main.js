@@ -161,6 +161,7 @@ var update_page = function(response, offset, total, post_type) {
         document.getElementById("offset").innerHTML = offset;
         getPosts(offset + 20, total, post_type);
     } else {
+        document.getElementById("first_response").innerHTML = "";
         document.getElementById("status").innerHTML = "<p>I’ve finished looking, and I found " + untagged_total + " untagged posts.</p>";
     }
 }
