@@ -5,6 +5,7 @@
 <script>
 var API_KEY = 'ii4TLRjfMoszcoDkrxBKUk5isHgx0ezQnJ8JWGntYIboVVigez'
 
+untagged_total = 0;
 
 // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 var qs = (function(a) {
@@ -109,6 +110,7 @@ var getPosts = function(offset, total) {
             for (var i in response.response.posts) {
                 var post = response.response.posts[i];
                 if (is_untagged(post)) {
+                    untagged_total += 1;
                     document.getElementById("posts").innerHTML += ("<li><a href=\"" + post.post_url + "\">" + post.post_url + "</a></li>");
                 }
             }
@@ -116,8 +118,12 @@ var getPosts = function(offset, total) {
             console.log(offset);
             console.log(total);
 
+            document.getElementById("untagged_total").innerHTML = untagged_total;
             if (offset < total) {
+                document.getElementById("offset").innerHTML = offset;
                 getPosts(offset + 20, total);
+            } else {
+                document.getElementById("status").innerHTML = "<p>I’ve finished looking, and I found " + untagged_total + " untagged posts.</p>";
             }
         }
     });
@@ -142,23 +148,24 @@ $.ajax({
     success: function( response ) {
         console.log(response.response.blog.posts);
         if (response.meta.status === 200) {
-            var mystring = "<p>Successful response! I found " + response.response.blog.posts + " post";
-            if (response.response.blog.posts != 1) { mystring += "s" };
-            document.getElementById("myid").innerHTML = (mystring);
+            document.getElementById("first_response").innerHTML = ("<p>I found your blog! Searching for untagged posts:");
+            var statusstring = "<p>Looked through <span id=\"offset\">0</span> of " + response.response.blog.posts + " total post";
+
+            if (response.response.blog.posts != 1) { statusstring += "s"; }
+            statusstring += ": (found <span id=\"untagged_total\">0</span> untagged posts)</p>";
+            document.getElementById("status").innerHTML = statusstring;
+            getPosts(0, response.response.blog.posts);
         } else {
-            document.getElementById("myid").innerHTML = ("<p>Something went wrong!</p>");
+            document.getElementById("first_response").innerHTML = ("<p>Something went wrong!</p>");
         }
-        getPosts(0, response.response.blog.posts);
     }
 });
 
 </script>
 
-<div id="myid">
-</div>
+<div id="first_response"></div>
+
+<div id="status"></div>
 
 <ol id="posts">
 </ol>
-
-
-<hr/>
