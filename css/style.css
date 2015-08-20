@@ -94,7 +94,7 @@ a:visited {
  */
 hr {
     background-color: #eee;             /* light-gray */
-    height: 1px;
+    height: 2px;
     border: none;
 }
 
@@ -511,4 +511,8 @@ button {
 	position:relative;
 	top:3px;
     background-color: green;
+}
+
+h1 {
+    font-size: 2em;
 }

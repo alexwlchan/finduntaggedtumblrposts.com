@@ -1,34 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Alex Chan">
-  <meta name="description" content="A way to find untagged posts from your Tumblr site">
-
-  <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
-  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-
-  <title>Find Untagged Tumblr Posts</title>
-
-  <!--<script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-51000035-2', 'finduntaggedtumblrposts.com');
-      ga('send', 'pageview');
-
-    </script>-->
-</head>
-
-<body>
-
   <script>
   // http://stackoverflow.com/questions/316781/how-to-build-query-string-with-javascript
   function buildUrl(url, parameters){
@@ -45,6 +14,12 @@
   }
 
     var myfunction = function() {
+      console.log("entering myfunction");
+
+      if (document.getElementById("hostname").value == "") {
+        alert("Please enter a URL!");
+        return;
+      }
 
       var parameters = new Array();
 
@@ -52,20 +27,12 @@
       parameters["include_reblogs"] = (document.getElementById("reblog_filter").value == "include reblogs");
       parameters["type"] = document.getElementById("post_filter").value.split(" ")[0];
 
+      console.log(parameters["type"]);
+      console.log(buildUrl("results", parameters));
+
       document.location.href = buildUrl("results", parameters);
     }
   </script>
-
-  <aside>
-    <div id="header_text">
-      <h1 id="brand"><a href="/">Find Untagged Tumblr Posts</a></h1>
-    </div>
-  </aside>
-
-  <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-
-  <main>
-    <article>
 
       <!-- TODO: come back later and make this look a little nicer -->
       <noscript>
@@ -84,7 +51,7 @@
         <hr>
       </noscript>
 
-      <form>
+      <form action="javascript:myfunction();">
         Enter your Tumblr URL:
 
         <p>
@@ -98,13 +65,13 @@
         <p>I want to <select class="styled-select" id="reblog_filter">
           <option>include reblogs</option>
           <option>exclude reblogs</option>
-        </select> and get <select class="styled-select" id="post_filter">
+        </select> and see <select class="styled-select" id="post_filter">
           <option>all types of post</option>
           <option>text posts</option>
           <option>photo posts</option>
           <option>quotes</option>
           <option>link posts</option>
-          <option>chats posts</option>
+          <option>chat posts</option>
           <option>audio posts</option>
           <option>videos</option>
           <option>answer posts</option>
@@ -112,25 +79,7 @@
       </form>
 
       <p>
-        <center><button type="button" id="untagged_posts_button" onclick="myfunction();">
+        <center><button type="submit" id="untagged_posts_button" onclick="myfunction();">
           Get my untagged posts!
         </button></center>
       </p>
-
-    </article>
-
-    <hr class="footer">
-
-  </main>
-
-  <footer>
-    <p>Not affiliated with nor endorsed by Tumblr. Copyright &copy; 2012&ndash;15 Alex Chan.</p>
-    <p>
-      <a href="about/">about</a> •
-      <a href="contact/">contact</a> •
-      <a href="faq/">faq</a> •
-      <a href="privacy/">privacy</a>
-    </p>
-  </footer>
-</body>
-</html>
