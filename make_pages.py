@@ -49,7 +49,7 @@ for name in ['about', 'results', 'privacy', 'contact']:
 
 # Install the CSS file, making sure we minify it first
 os.mkdir(os.path.join(OUTPUT_PATH, 'css'))
-with open('style.css') as cssfile, open(os.path.join(OUTPUT_PATH, 'css', 'style.css'), 'w') as outfile:
+with open('style.css') as cssfile, open(os.path.join(OUTPUT_PATH, 'css', 'style.min.css'), 'w') as outfile:
     data = cssfile.read()
     outfile.write(csscompressor.compress(data))
 
@@ -65,3 +65,9 @@ with open('main.js') as jsfile, open(os.path.join(OUTPUT_PATH, 'javascript', 'ma
 # Create the CNAME file that GitHub Pages requires
 with open(os.path.join(OUTPUT_PATH, 'CNAME'), 'w') as f:
     f.write('finduntaggedtumblrposts.com')
+
+
+# Install the favicons
+os.mkdir(os.path.join(OUTPUT_PATH, 'images'))
+for img in ['apple-touch-icon.png', 'favicon.png', 'favicon.ico']:
+    shutil.copyfile(img, os.path.join(OUTPUT_PATH, 'images', img))

@@ -1,74 +1,7 @@
 /**
- * CONTENTS
- *
- * SETTINGS
- * Global               Stylesheet "variables", for ease of access and
- *                      changing if necessary.
- * Appearance           General appearance styles: links, font-family,
- *                      colors, etc.
- *
- * LAYOUT
- * Page header          The large colored stripe across the top of every
- *                      page
- * Footer
- * Images
- *
- * SPECIAL FEATURES
- * Code blocks
- * Footnotes
- * Article titles
- * Blockquotes
- * Pagination buttons
- * Updates
- * Tweets
- *
- * EXPERIMENTAL
- *                      This is a section for me to experiment with new
- *                      styles without changing the rest of the file.
+ * These styles are mostly copied from the CSS file for my main blog --
+ * so look at that first!
  */
-
-
-
-
-/*====================================*\
-  # SETTINGS
-\*====================================*/
-
-/*------------------------------------*\
-  # Global
-\*------------------------------------*/
-
-/**
- * This section is just a comment which includes some global constants and their
- * corresponding meanings, so that I can easily find/replace them later
- * if I need.
- *
- * Colors:
- *
- *    primary-red:     #c7301f;
- *    red-background:  #ffe3e1;
- *    muted-red:       #892115;
- *    body-gray:       #222;
- *    blockquote-gray: #666;
- *    accent-gray:     #999;
- *    light-gray:      #eee;
- *
- * Font definitions:
- *
- *    serif: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
- *    mono: Menlo, monospace;
- *
- * Layout definitions:
- *
- *    page-width: 750px;
- *    subfont-size: 0.9em;
- */
-
-
-
-/*------------------------------------*\
-  # Appearance
-\*------------------------------------*/
 
 body {
     font: 12pt Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
@@ -88,31 +21,15 @@ a:visited {
     color: #892115;                     /* muted-red */
 }
 
-/**
- * Removing the border from the horizontal rule and just displaying the
- * background allows me to customize the color.
- */
 hr {
     background-color: #eee;             /* light-gray */
     height: 2px;
     border: none;
 }
 
-
-
-
-
-/*====================================*\
-  # LAYOUT
-\*====================================*/
-
-/**
- * All the page elements are wrapped to the same width and centred.
- */
 #header_text,
 article,
-footer,
-#paginator {
+footer {
     max-width: 800px;                   /* page-width */
     margin-left:  auto;
     margin-right: auto;
@@ -156,14 +73,6 @@ body {
 }
 
 /**
- * The tagline is just a snippet of text which explains who I am.  Make
- * it stand out from the rest of the header.
- */
-#tagline {
-    font-style: oblique;
-}
-
-/**
  The site title is contained in a div id:'brand'.  We make it nice and
  big, and hide the underline
  */
@@ -186,252 +95,6 @@ footer {
     font-size: 0.9em;                   /* subfont-size */
     padding-top: 2em;
 }
-
-
-
-/*------------------------------------*\
-  # Images
-\*------------------------------------*/
-
-img {
-    max-width: 100%;
-    margin-left:  auto;
-    margin-right: auto;
-    display: block;
-}
-
-
-
-
-
-/*====================================*\
-  # SPECIAL FEATURES
-\*====================================*/
-
-/*------------------------------------*\
-  # Code blocks
-\*------------------------------------*/
-
-/**
- * There are two tags for code blocks: <pre>, which is used for large
- * blocks of code, and <code>, which is used for snippets or individual
- * lines within <pre>
- */
-
-code {
-    margin:  2px;
-    padding: 2px;
-}
-
-code, pre {
-    font-family: Menlo, monospace;      /* font: mono */
-    background-color: #eee;             /* light-gray */
-    font-size: 0.9em;                   /* subfont-size */
-}
-
-/**
- * The overflow-x line ensures that extra text only appears within the
- * confines of the gray background, and doesn't spill out onto the page.
- * Effectively the <pre> becomes a 'window' into the code beneath.
- */
-pre {
-    padding: 10px;
-    line-height: 1.35em;
-    overflow-x: auto;
-}
-
-/**
- This is essentially pygments.css, stuffed into a single file.  I figured
- it was small enough to just put in here, rather than leave as a separate
- file which gets its own HTTP request.
- */
-.hll{background-color:#ffc}.c{color:#408080;font-style:italic}.err{border:1px solid red}.k{color:#008000;font-weight:bold}.o{color:#666}.cm{color:#408080;font-style:italic}.cp{color:#bc7a00}.c1{color:#408080;font-style:italic}.cs{color:#408080;font-style:italic}.gd{color:#a00000}.ge{font-style:italic}.gr{color:red}.gh{color:navy;font-weight:bold}.gi{color:#00a000}.go{color:#888}.gp{color:navy;font-weight:bold}.gs{font-weight:bold}.gu{color:purple;font-weight:bold}.gt{color:#04d}.kc{color:#008000;font-weight:bold}.kd{color:#008000;font-weight:bold}.kn{color:#008000;font-weight:bold}.kp{color:#008000}.kr{color:#008000;font-weight:bold}.kt{color:#b00040}.m{color:#666}.s{color:#ba2121}.na{color:#7d9029}.nb{color:#008000}.nc{color:#00f;font-weight:bold}.no{color:#800}.nd{color:#a2f}.ni{color:#999;font-weight:bold}.ne{color:#d2413a;font-weight:bold}.nf{color:#00f}.nl{color:#a0a000}.nn{color:#00f;font-weight:bold}.nt{color:#008000;font-weight:bold}.nv{color:#19177c}.ow{color:#a2f;font-weight:bold}.w{color:#bbb}.mf{color:#666}.mh{color:#666}.mi{color:#666}.mo{color:#666}.sb{color:#ba2121}.sc{color:#ba2121}.sd{color:#ba2121;font-style:italic}.s2{color:#ba2121}.se{color:#b62;font-weight:bold}.sh{color:#ba2121}.si{color:#b68;font-weight:bold}.sx{color:#008000}.sr{color:#b68}.s1{color:#ba2121}.ss{color:#19177c}.bp{color:#008000}.vc{color:#19177c}.vg{color:#19177c}.vi{color:#19177c}.il{color:#666}
-
-
-
-/*------------------------------------*\
-  # Footnotes
-\*------------------------------------*/
-
-/**
- * The padding-tops adds a little extra space between the bottom of an article
- * and the start of the footnote section.
- */
-.footnote {
-  font-size: 0.9em;                     /* subfont-size */
-  padding-top: 1.5em;
-}
-
-/**
- * These rules help the positioning of the footnote markers, although I'm not
- * entirely sure how they work.
- */
-sup, sub {
-  vertical-align: 0ex;
-  position: relative;
-}
-
-sup { bottom: 1ex; }
-sub { top: 0.8ex; }
-
-
-
-/*------------------------------------*\
-  # Article titles
-\*------------------------------------*/
-
-.article_title a,
-.permalink a,
-.continue_reading {
-    color: #c7301f !important;          /* primary-red */
-}
-
-.fullpost_title a {
-    text-decoration: none;
-    font-size: 1.5em;
-    line-height: 1.5em;
-}
-
-/**
- * The article_meta class covers permalinks and posting dates
- */
-.article_meta {
-    font-size: 0.9em;                   /* subfont-size */
-    color: #999;                        /* accent-gray */
-}
-
-.linkpost_arrow {
-    color: #999;                        /* accent-gray */
-}
-
-.permalink a {
-    font-size: 1.2em;
-    text-decoration: none;
-}
-
-/**
- * Adjust the spacing around titles to make them look nice
- */
-.linkpost_title {
-    margin-bottom: -0.5em;
-}
-
-.fullpost_title {
-    margin-bottom: -0.3em;
-}
-
-
-
-/*------------------------------------*\
-  # Blockquotes
-\*------------------------------------*/
-
-blockquote {
-    border-left: 5px solid #ccc;        /* primary-red */
-    margin-left:  15px;
-    margin-right: 0px;
-    padding: 1px 15px;
-    color: #666;                        /* blockquote-gray */
-    font-style: italic;
-}
-
-/* TODO: move this style to tweet.css */
-.bbpBox blockquote {
-    color: #222;                        /* body-gray */
-}
-
-
-
-/*------------------------------------*\
-  # Pagination buttons
-\*------------------------------------*/
-
-#paginator {
-    padding-top:    25px;
-    margin-bottom: 25px;
-    padding-bottom: 10px;
-}
-
-#paginator a {
-    color: #c7301f;                     /* primary-red */
-}
-
-.pagination_newer {
-    float: right;
-}
-
-
-
-/*------------------------------------*\
-  # Updates
-\*------------------------------------*/
-
-.update {
-    border: 2px solid #c7301f;          /* primary-red */
-    background-color: #ffe3e1;          /* red-background */
-    padding: 12px;
-    margin-bottom: 1em;
-}
-
-.update p {
-    margin-bottom: 0em;
-}
-
-.update_heading {
-  font-weight: bold;
-}
-
-
-
-/*------------------------------------*\
-  # Tweets
-\*------------------------------------*/
-
-/**
- * I think Dr. Drang wrote this originally?  Whatever, I have it
- * inlined so that all my CSS comes down in a single file.
- */
-
-.bbpBox {
-  width: 80%;
-  background: #8ec2da;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1em;
-  margin-top: 1em;
-  margin-bottom: 1.1em;
-/*  margin: 1em 0em 1.1em 0em;*/
-  font-family: Georgia !important;
-}
-
-.bbpBox blockquote {
-  background-color: white;
-  margin: 0em !important;
-  padding: .75em .75em .5em .75em !important;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-left-style: none !important;
-  font-style: normal !important;
-  line-height: 1.5em;
-}
-
-.bbpBox blockquote a {
-  color: blue;
-  text-decoration: none;
-}
-
-.bbpBox blockquote a:hover {
-  text-decoration: underline;
-}
-
-.bbpBox blockquote .twMeta {
-  font-size: 80%;
-}
-
-.bbpBox blockquote .twContent {
-  margin-bottom: 25em;
-}
-
 
 
 
