@@ -1,171 +1,31 @@
-<h2>Results</h2>
-
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/javascript/main.js"></script>
 
 <script>
-var API_KEY = 'ii4TLRjfMoszcoDkrxBKUk5isHgx0ezQnJ8JWGntYIboVVigez'
+var hostname = queryParams["hostname"];
+var include_reblogs = queryParams["include_reblogs"];
 
-untagged_total = 0;
+/**
+ * We have to special-case these two post types so that they match the
+ * values which should be supplied to the Tumblr API.
+ */
+var post_type = queryParams["type"];
+if (post_type == "quotes") { post_type = "quote"; }
+if (post_type == "videos") { post_type = "video"; }
 
-// http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-var qs = (function(a) {
-    if (a == "") return {};
-    var b = {};
-    for (var i = 0; i < a.length; ++i)
-    {
-        var p=a[i].split('=', 2);
-        if (p.length == 1)
-            b[p[0]] = "";
-        else
-            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " ")).replace(/\//g, "");
-    }
-    return b;
-})(window.location.search.substr(1).split('&'));
-
-document.write("Getting untagged posts for <strong>" + qs["hostname"] + "</strong> which ");
-
-if (qs["include_reblogs"]) {
-  document.write("<strong>include</strong>");
-} else {
-  document.write("<strong>exclude</strong>");
+var get_results = function() {
+    document.getElementById("option_string").innerHTML = optionString(hostname, include_reblogs, post_type);
+    makeRequest(null, null, post_type, initial_success);
 }
-document.write(" reblogs")
-
-if (qs["type"] != "all") {
-  document.write(" and only includes ");
-  switch(qs["type"]) {
-    case "text":
-    case "photo":
-    case "link":
-    case "chat":
-    case "audio":
-    case "answer":
-      document.write("<strong>" + qs["type"] + " posts</strong>");
-      break;
-    case "quotes":
-    case "videos":
-      document.write("<strong>" + qs["type"] + "</strong>");
-      break;
-  }
-}
-
-
-if (qs["type"] == "all") {
-    if (qs["include_reblogs"]) {
-        var is_untagged = function(post) {
-            console.log(post);
-            return !post.tags.length;
-        }
-    } else {
-        var is_untagged = function(post) {
-/*            console.log(post);*/
-            return (!post.tags.length) && (!post.hasOwnProperty("reblogged_root_id"));
-        }
-    }
-}
-
-
-// Given a URL, try to normalise it into a hostname to be supplied to
-// the Tumblr API.
-var normalise_url = function(url) {
-    // First strip any http:// or https:// prefix
-    url = url.replace(/^http[s]{0,}:\/\//g, "");
-
-    // Then remove any trailing slashes
-    url = url.replace(/\/$/g, "");
-
-    return url
-}
-
-
-// Returns a URL for the Tumblr API
-var API_URL = function(url) {
-    return 'http://api.tumblr.com/v2/blog/'
-           + normalise_url(url)
-           + '/posts?callback=JSON_CALLBACK&api_key='
-           + API_KEY
-           + '&reblog_info=true';
-}
-
-var getPosts = function(offset, total) {
-    $.ajax({
-        url: "http://api.tumblr.com/v2/blog/bloovanmeer.tumblr.com/posts",
-
-        // The name of the callback parameter, as specified by the YQL service
-        callback: "JSON_CALLBACK",
-
-        // Tell jQuery we're expecting JSONP
-        dataType: "jsonp",
-
-        // Tell YQL what we want and that we want JSON
-        data: {
-            "reblog_info": "true",
-            "api_key": API_KEY,
-            "offset": offset,
-        },
-
-        // Work with the response
-        success: function( response ) {
-            console.log(response.response.posts);
-            for (var i in response.response.posts) {
-                var post = response.response.posts[i];
-                if (is_untagged(post)) {
-                    untagged_total += 1;
-                    document.getElementById("posts").innerHTML += ("<li><a href=\"" + post.post_url + "\">" + post.post_url + "</a></li>");
-                }
-            }
-            console.log(response);
-            console.log(offset);
-            console.log(total);
-
-            document.getElementById("untagged_total").innerHTML = untagged_total;
-            if (offset < total) {
-                document.getElementById("offset").innerHTML = offset;
-                getPosts(offset + 20, total);
-            } else {
-                document.getElementById("status").innerHTML = "<p>I’ve finished looking, and I found " + untagged_total + " untagged posts.</p>";
-            }
-        }
-    });
-}
-
-$.ajax({
-    url: "http://api.tumblr.com/v2/blog/bloovanmeer.tumblr.com/posts",
-
-    // The name of the callback parameter, as specified by the YQL service
-    callback: "JSON_CALLBACK",
-
-    // Tell jQuery we're expecting JSONP
-    dataType: "jsonp",
-
-    // Tell YQL what we want and that we want JSON
-    data: {
-        "reblog_info": "true",
-        "api_key": API_KEY,
-    },
-
-    // Work with the response
-    success: function( response ) {
-        console.log(response.response.blog.posts);
-        if (response.meta.status === 200) {
-            document.getElementById("first_response").innerHTML = ("<p>I found your blog! Searching for untagged posts:");
-            var statusstring = "<p>Looked through <span id=\"offset\">0</span> of " + response.response.blog.posts + " total post";
-
-            if (response.response.blog.posts != 1) { statusstring += "s"; }
-            statusstring += ": (found <span id=\"untagged_total\">0</span> untagged posts)</p>";
-            document.getElementById("status").innerHTML = statusstring;
-            getPosts(0, response.response.blog.posts);
-        } else {
-            document.getElementById("first_response").innerHTML = ("<p>Something went wrong!</p>");
-        }
-    }
-});
-
 </script>
 
-<div id="first_response"></div>
+<h2>Results</h2>
 
+<div id="option_string"></div>
+<div id="first_response"></div>
 <div id="status"></div>
 
 <ol id="posts">
 </ol>
+
+<script>get_results();</script>

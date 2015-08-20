@@ -516,3 +516,8 @@ button {
 h1 {
     font-size: 2em;
 }
+
+.option {
+    font-style: italic;
+    font-weight: bold;
+}
