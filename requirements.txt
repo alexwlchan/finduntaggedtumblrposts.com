@@ -1,3 +1,6 @@
 csscompressor==0.9.3
 ghp-import==0.4.1
 htmlmin==0.1.6
+ply==3.4
+slimit==0.8.1
+wsgiref==0.1.2
