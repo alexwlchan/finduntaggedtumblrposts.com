@@ -196,3 +196,25 @@ h1 {
     /*   color: #c7301f;*/
     }
 }
+
+code {
+    margin:  2px;
+    padding: 2px;
+}
+
+code, pre {
+    font-family: Menlo, monospace;      /* font: mono */
+    background-color: #eee;             /* light-gray */
+    font-size: 0.9em;                   /* subfont-size */
+}
+
+/**
+ * The overflow-x line ensures that extra text only appears within the
+ * confines of the gray background, and doesn't spill out onto the page.
+ * Effectively the <pre> becomes a 'window' into the code beneath.
+ */
+pre {
+    padding: 10px;
+    line-height: 1.35em;
+    overflow-x: auto;
+}

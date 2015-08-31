@@ -195,6 +195,10 @@ var initial_success = function(response, offset, total, post_type) {
         document.getElementById("status").innerHTML = statusstring;
         getPosts(0, response.response.total_posts, post_type);
     } else {
-        document.getElementById("first_response").innerHTML = ("<p>I tried to look up your </p>");
+        var error_msg = "<p>I tried to look up your untagged posts, but I got an error.</p>";
+        error_msg += "<p>This is the message from the Tumblr API:</p>";
+        error_msg += "<pre>Status code " + response.meta.status + ". " + response.meta.msg + ".</pre>";
+        error_msg += "<p>If the problem persists, please <a href=\"/contact\">let me know</a>.</p>"
+        document.getElementById("first_response").innerHTML = (error_msg);
     }
 }
