@@ -182,7 +182,6 @@ var getPosts = function(offset, total, post_type) {
  * This function gets the initial response from the Tumblr API, including
  * the total number of posts to examine, and then sets up the appropriate
  * status indicators.
- * TODO: improve the error handling.
  */
 var initial_success = function(response, offset, total, post_type) {
     if (response.meta.status === 200) {
