@@ -14,13 +14,18 @@ install the requirements:
     source venv/bin/activate
     pip install -r requirements.txt
 
-I use Python 3.4 to develop the site.  Last time I checked, the scripts
-weren't working with Python 2.x
+I use Python 2.7 to develop the site.  Moving to Python 3 is blocked
+on [an issue with slimit](https://github.com/rspivak/slimit/issues/64),
+the Python library I use for JavaScript minification.
 
-To build the site:
- 
-    python make_pages.py
+All the key tasks are handled by the Makefile.  Help message with
+`make help`:
 
-Then push the output directory to the gh-pages branch on GitHub:
+    $ make help
+    Makefile for "Find Untagged Tumblr Posts
 
-    ghp-import -p _output
+    Usage:
+       make html                           (re)generate the web site
+       make clean                          remove the generated files
+       make serve                          serve site at http://localhost:8000
+       make github                         upload the web site via gh-pages
