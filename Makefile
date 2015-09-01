@@ -2,7 +2,7 @@ BASEDIR=$(CURDIR)
 OUTPUTDIR=$(BASEDIR)/_output
 
 help:
-	@echo 'Makefile for "Find Untagged Tumblr Posts                                  '
+	@echo 'Makefile for "Find Untagged Tumblr Posts"                                 '
 	@echo '                                                                          '
 	@echo 'Usage:                                                                    '
 	@echo '   make html                           (re)generate the web site          '
@@ -16,7 +16,7 @@ html: clean
 clean:
 	[ ! -d $(OUTPUTDIR) ] || rm -rf $(OUTPUTDIR)
 
-serve: html
+serve:
 	@cd $(OUTPUTDIR) && python -m SimpleHTTPServer
 
 github: html
