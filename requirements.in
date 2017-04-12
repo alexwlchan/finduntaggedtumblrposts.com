@@ -1,0 +1,4 @@
+celery
+Flask
+redis
+requests
