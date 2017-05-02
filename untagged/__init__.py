@@ -20,8 +20,14 @@ celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
 
-api_key = os.environ.get('TUMBLR_API_KEY')
-sess = TumblrSession(api_key=api_key)
+try:
+    api_key = os.environ['TUMBLR_API_KEY']
+except KeyError:
+    raise RuntimeError(
+        "Couldn't find TUMBLR_API_KEY environment variable"
+    ) from None
+else:
+    sess = TumblrSession(api_key=api_key)
 
 
 Post = collections.namedtuple('Post', ['url', 'type', 'date'])
