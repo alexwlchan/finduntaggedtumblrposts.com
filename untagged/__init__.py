@@ -8,6 +8,8 @@ from flask import Flask, request, render_template, redirect, url_for, jsonify
 from celery import Celery
 import requests
 
+from .tumblr import TumblrSession
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY')
@@ -19,7 +21,8 @@ celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
 
-API_KEY = os.environ.get('TUMBLR_API_KEY')
+api_key = os.environ.get('TUMBLR_API_KEY')
+sess = TumblrSession(api_key=api_key)
 
 
 Post = collections.namedtuple('Post', ['url', 'type', 'date'])
@@ -36,12 +39,7 @@ def _extract_posts(resp):
 @celery.task(bind=True)
 def long_task(self, hostname):
     """Background task that runs a long function with progress reports."""
-    resp = requests.get(
-        'https://api.tumblr.com/v2/blog/%s/posts' % hostname,
-        params={
-            'api_key': API_KEY,
-        }
-    )
+    resp = sess.get_posts(hostname=hostname)
     print(resp, resp.text[:200])
 
     self.update_state(state='PENDING')
@@ -74,13 +72,7 @@ def long_task(self, hostname):
     )
 
     for offset in range(20, (post_count // 20) * 20, 20):
-        resp = requests.get(
-            'https://api.tumblr.com/v2/blog/%s/posts' % hostname,
-            params={
-                'api_key': API_KEY,
-                'offset': offset,
-            }
-        )
+        resp = sess.get_posts(hostname=hostname, offset=offset)
         print(resp, resp.text[:200])
         posts.extend(_extract_posts(resp))
         self.update_state(
@@ -149,7 +141,3 @@ def taskstatus(task_id):
             'status': str(task.info),
         }
     return jsonify(response)
-
-#
-# if __name__ == '__main__':
-#     app.run(debug=True)
