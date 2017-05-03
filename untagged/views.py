@@ -13,9 +13,14 @@ def index():
     return redirect(url_for('index'))
 
 
-@app.route('/about')
+@app.route('/about/')
 def about():
     return render_template('about.html', title='About')
+
+
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html', title='Contact')
 
 
 @app.route('/trigger_task', methods=['POST'])
