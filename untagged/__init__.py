@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import collections
+import enum
 import os
 
 from flask import Flask, request, render_template, redirect, url_for, jsonify
@@ -33,66 +34,75 @@ else:
 Post = collections.namedtuple('Post', ['url', 'type', 'date'])
 
 
-def _extract_posts(resp):
-    print(resp.json()['response']['posts'][0])
-    return [
-        Post(p['post_url'], p['type'], p['date'])
-        for p in resp.json()['response']['posts'] if not p['tags']
-    ]
+class States(enum.Enum):
+    pending = 'PENDING'
+    progress = 'PROGRESS'
+    failure = 'FAILURE'
 
 
 @celery.task(bind=True)
 def long_task(self, hostname):
     """Background task that runs a long function with progress reports."""
-    resp = sess.get_posts(hostname=hostname)
-    print(resp, resp.text[:200])
+    self.update_state(state=States.pending)
 
-    self.update_state(state='PENDING')
-
-    if resp.status_code != 200:
+    # Make an initial request to the Tumblr API.  This checks that
+    # our API key is correct and that the hostname exists.
+    try:
+        initial_resp = sess.get_posts(hostname=hostname)
+    except RuntimeError as err:
         self.update_state(
-            state='FAILURE',
+            state=States.failure,
             meta={
-                'status_code': resp.status_code,
-                'message': resp.text,
+                'message': err.args[0],
             }
         )
+        return
 
-    post_count = resp.json()['response']['total_posts']
+    # If the initial request works, we can report the total posts
+    # and the initial batch of untagged posts to the user.
+    post_count = resp.post_count()
+    posts = resp.untagged_posts()
+    total_posts = resp.total_posts()
     self.update_state(
-        state='PROGRESS',
-        meta={
-            'total': post_count
-        }
-    )
-
-    posts = _extract_posts(resp)
-    self.update_state(
-        state='PROGRESS',
+        state=States.progress,
         meta={
             'posts': posts,
-            'current': len(resp.json()['response']['posts']),
-            'total': post_count,
+            'post_count': post_count,
+            'total_posts': total_posts,
         }
     )
 
+    # Now fetch the remaining posts.  The Tumblr API doles out posts in
+    # batches of 20.
+    # TODO: This logic should be contained in tumblr.py, but I haven't
+    # tidied it up yet.
     for offset in range(20, (post_count // 20) * 20, 20):
-        resp = sess.get_posts(hostname=hostname, offset=offset)
-        print(resp, resp.text[:200])
-        posts.extend(_extract_posts(resp))
+        try:
+            resp = sess.get_posts(hostname=hostname, offset=offset)
+        except RuntimeError as err:
+            self.update_state(
+                state=States.failure,
+                meta={
+                    'message': err.args[0],
+                }
+            )
+            return
+
+        post_count += resp.post_count()
+        posts.extend(resp.untagged_posts())
         self.update_state(
-            state='PROGRESS',
+            state=States.progress,
             meta={
                 'posts': posts,
-                'current': offset + 20,
-                'total': post_count,
+                'post_count': post_count,
+                'total_posts': total_posts,
             }
         )
 
     return {
         'posts': posts,
-        'current': post_count,
-        'total': post_count,
+        'post_count': post_count,
+        'total_posts': total_posts,
     }
 
 

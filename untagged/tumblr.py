@@ -3,13 +3,45 @@
 Code for interacting with the Tumblr API.
 """
 
+import collections
+
 import requests
 
 
 API_ENDPOINT = 'https://api.tumblr.com/v2'
 
 
-# TODO: It should be possible to test this with Betamax.
+Post = collections.namedtuple('Post', ['url', 'type', 'date'])
+
+
+class TumblrResponse:
+    """
+    A wrapper around ``requests.Response`` that exposes a few convenience
+    methods.
+    """
+
+    def __init__(self, resp):
+        assert self.resp.status_code == 200
+        self.resp = resp
+
+    def untagged_posts(self):
+        return [
+            Post(url=p['post_url'], type=p['type'], date=p['date'])
+            for p in self.resp.json()['response']['posts']
+            if not p['tags']
+        ]
+
+    @property
+    def status_code(self):
+        return self.resp.status_code
+
+    def post_count(self):
+        """How many posts have been checked in this respons?"""
+        return len(self.resp.json()['response']['posts'])
+
+    def total_posts(self):
+        """How many posts are there in total?"""
+        return self.resp.json()['response']['total_posts']
 
 
 # TODO: It should be possible to test this with Betamax.
@@ -44,7 +76,7 @@ class TumblrSession(requests.Session):
                 f'Error from Tumblr API: {resp.status_code} ({resp.text})'
             )
 
-        return resp.json()['response']['posts']
+        return TumblrResponse(resp)
 
 
 __all__ = ['TumblrSession']
