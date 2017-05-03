@@ -37,7 +37,7 @@
         // kicks off a new task, and tells us where to look for progress.
         $.ajax({
           type: 'POST',
-          url: '/{{ url_for("trigger_task") }}?hostname=' + hostname,
+          url: '{{ url_for("trigger_task") }}?hostname=' + hostname,
           success: function(data, status, request) {
             status_url = request.getResponseHeader('Location');
             update_progress(status_url, div[0], div[1]);
@@ -57,23 +57,23 @@
           console.log(data);
 
           // Start by giving the user an update.
-          if (data['state'] == {{ States.pending }}) {
+          if (data['state'] == "PENDING") {
             $(status_div).text('Pending...')
-          } else if (data['state'] == {{ States.progress }}) {
-            $(status_div).text('In progress, checked ' + data['current'] + ' of ' + data['total'] + ':');
-          } else if (data['state'] == {{ States.success }}) {
-            $(status_div).text('Complete: found ' + data['posts'].length + ' untagged posts among ' + data['total'] + ' total.');
-          } else if (data['state'] == {{ States.failure }}) {
+          } else if (data['state'] == "PROGRESS") {
+            $(status_div).text('In progress, checked ' + data['info']['post_count'] + ' of ' + data['info']['total_posts'] + ':');
+          } else if (data['state'] == "SUCCESS") {
+            $(status_div).text('Complete: found ' + data['info']['posts'].length + ' untagged posts among ' + data['info']['total_posts'] + ' total.');
+          } else if (data['state'] == "FAILURE") {
             $(status_div).text('Something went wrong.');
           }
 
           // If the task returned a successful response, add any posts
           // we don't already have to the list of untagged posts shown
           // to the user.
-          if (data['state'] == {{ States.progress }} || data['state'] == {{ States.success }}) {
+          if (data['state'] == "PROGRESS" || data['state'] == "SUCCESS") {
             current = $('#untagged').find('li').length;
-            for (i = current; i < data['posts'].length; i++) {
-              post = data['posts'][i];
+            for (i = current; i < data['info']['posts'].length; i++) {
+              post = data['info']['posts'][i];
               li = $('<li class="post__' + post[1] + '"><a href=' + post[0] + '>' + post[0] + '</a></li>');
               $('#untagged').append(li);
             }
@@ -81,7 +81,7 @@
 
           // If the task didn't fail and hasn't finished yet, go back for
           // a progress update in another two seconds.
-          if (data['state'] != {{ States.failure }} && data['state'] != {{ States.success }}) {
+          if (data['state'] != "FAILURE" && data['state'] != "SUCCESS") {
             setTimeout(function() {
               update_progress(status_url, status_div, untagged_ul);
             }, 2000);

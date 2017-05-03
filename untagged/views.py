@@ -3,15 +3,13 @@
 from flask import jsonify, request, render_template, redirect, url_for
 
 from . import app
-from .tasks import find_untagged_posts_task, States
+from .tasks import find_untagged_posts_task
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template(
-            'index.html',
-            States=States)
+        return render_template('index.html')
     return redirect(url_for('index'))
 
 
@@ -26,7 +24,7 @@ def trigger_task():
 
 @app.route('/status/<task_id>')
 def task_status(task_id):
-    task = long_task.AsyncResult(task_id)
+    task = find_untagged_posts_task.AsyncResult(task_id)
     return jsonify({
         'state': task.state,
         'info': task.info,

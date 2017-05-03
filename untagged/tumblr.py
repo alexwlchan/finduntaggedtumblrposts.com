@@ -21,7 +21,7 @@ class TumblrResponse:
     """
 
     def __init__(self, resp):
-        assert self.resp.status_code == 200
+        assert resp.status_code == 200
         self.resp = resp
 
     def untagged_posts(self):
