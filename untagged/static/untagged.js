@@ -6,7 +6,7 @@ function start_long_task() {
     return;
   }
 
-  div = $('<p class="status"></p><ul id="untagged"></ul>');
+  div = $('<p class="status"></p><ol id="untagged"></ol>');
 
   // TODO: This should discard any existing progress
   $('#progress').append(div);
@@ -15,8 +15,9 @@ function start_long_task() {
   // kicks off a new task, and tells us where to look for progress.
   $.ajax({
     type: 'POST',
-    url: '{{ url_for("trigger_task") }}?hostname=' + hostname,
+    url: '/trigger_task?hostname=' + hostname,
     success: function(data, status, request) {
+      $('#start-bg-job')[0].style.display = "none";
       status_url = request.getResponseHeader('Location');
       update_progress(status_url, div[0], div[1]);
     },
@@ -58,14 +59,17 @@ function update_progress(status_url, status_div, untagged_ul) {
     }
 
     // If the task didn't fail and hasn't finished yet, go back for
-    // a progress update in another two seconds.
+    // a progress update in another second.
     if (data['state'] != "FAILURE" && data['state'] != "SUCCESS") {
       setTimeout(function() {
         update_progress(status_url, status_div, untagged_ul);
-      }, 2000);
+      }, 1000);
     }
   })
 }
+
+
+
 $(function() {
   $('#start-bg-job').click(start_long_task);
 });
