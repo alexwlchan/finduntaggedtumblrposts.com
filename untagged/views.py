@@ -9,7 +9,9 @@ from .tasks import find_untagged_posts_task, States
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template(
+            'index.html',
+            States=States)
     return redirect(url_for('index'))
 
 
@@ -25,18 +27,7 @@ def trigger_task():
 @app.route('/status/<task_id>')
 def task_status(task_id):
     task = long_task.AsyncResult(task_id)
-
-    response = {
+    return jsonify({
         'state': task.state,
         'info': task.info,
-    }
-
-    if task.state == States.pending:
-        response['status'] = 'Pending...'
-    elif task.state == States.progress:
-        response['status'] = 'In progress...'
-    elif task.state == States.success:
-        response['status'] = 'Success...'
-    else:
-        response['status'] = 'Unknown state?'
-    return jsonify(response)
+    })
