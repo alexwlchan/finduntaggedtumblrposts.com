@@ -1,0 +1,100 @@
+.progress {
+  width: 100%;
+  text-align: center;
+}
+body {
+  font: 12pt Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+  line-height: 1.4em;
+  color: #202020;
+  margin: 0;
+  padding: 0;
+}
+aside {
+  background-color: #d01c11;
+  background: url('/static/specktre_d01c11.png');
+  background-size: auto 150%;
+}
+aside h1 a {
+  color: white !important;
+  text-decoration: none;
+}
+aside h1 {
+  font-size: 1.7em;
+}
+article, #aside_inner, #footer_inner {
+  max-width: 750px;
+  margin-left:  auto;
+  margin-right: auto;
+  padding: 1px 20px;
+}
+article {
+  padding-top: 15px;
+}
+input {
+  font-size: 1.3em;
+  padding: 3px;
+  text-align: center;
+  margin-left:  auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 8px;
+}
+select {
+  font-size: 1.1em;
+}
+#help {
+  margin-right: 0.3em;
+}
+#start-bg-job {
+  font-size: 1.1em;
+  background: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-left:  auto;
+  margin-right: auto;
+  display: block;
+  font-weight: bold;
+  margin-top: 8px;
+  border: 1px solid #d01c11;
+  color: #d01c11;
+  cursor: pointer;
+}
+#start-bg-job:active {
+  position: relative;
+  top: 3px;
+  background-color: #f1aea7
+}
+a {
+  color: #d01c11;
+}
+a:visited {
+  color: #a6070b;
+}
+a:hover {
+  text-decoration: none;
+}
+.dot_list li:not(:first-child)::before{
+  content:" · "
+}
+.dot_list {
+  list-style-type: none;
+  padding-left: 0 !important
+}
+.dot_list li {
+  display: inline-block;
+}
+hr {
+  height: 1px;
+  border: none;
+  background-color
+}
+footer {
+  color: #999;
+  font-size: .85em;
+  border-top: 1px solid #eee;
+  padding-top:    15px;
+  padding-bottom: 15px
+}
+footer a, footer a:visited {
+  color: #999;
+}

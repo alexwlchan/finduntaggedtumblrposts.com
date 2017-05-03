@@ -13,6 +13,11 @@ def index():
     return redirect(url_for('index'))
 
 
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
+
+
 @app.route('/trigger_task', methods=['POST'])
 def trigger_task():
     hostname = request.args['hostname']
