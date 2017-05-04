@@ -89,7 +89,8 @@ a:hover {
 hr {
   height: 1px;
   border: none;
-  background-color
+  background-color: #eee;
+  margin-bottom: 2em;
 }
 footer {
   color: #999;
@@ -100,4 +101,8 @@ footer {
 }
 footer a, footer a:visited {
   color: #999;
+}
+#progress {
+  padding-top:    1em;
+  padding-bottom: 1em;
 }

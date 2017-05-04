@@ -6,10 +6,8 @@ function start_long_task() {
     return;
   }
 
-  div = $('<p class="status"></p><ol id="untagged"></ol>');
-
   // TODO: This should discard any existing progress
-  $('#progress').append(div);
+  $('#progress').html('<hr/><p id="status"></p><ol id="untagged"></ol>');
 
   // Trigger a POST request to the 'trigger_task' endpoint that
   // kicks off a new task, and tells us where to look for progress.
@@ -19,7 +17,7 @@ function start_long_task() {
     success: function(data, status, request) {
       $('#start-bg-job')[0].style.display = "none";
       status_url = request.getResponseHeader('Location');
-      update_progress(status_url, div[0], div[1]);
+      update_progress(status_url);
     },
     error: function() {
       // TODO: This should be an error shown to screen, possibly printed?
@@ -30,20 +28,20 @@ function start_long_task() {
 
 // Ask the server for a progress update, and report it to the user
 // by updating the page.
-function update_progress(status_url, status_div, untagged_ul) {
+function update_progress(status_url) {
   // TODO: What if this request fails?
   $.getJSON(status_url, function(data) {
     console.log(data);
 
     // Start by giving the user an update.
     if (data['state'] == "PENDING") {
-      $(status_div).text('Pending...')
+      $('#status').text('Pending...')
     } else if (data['state'] == "PROGRESS") {
-      $(status_div).text('In progress, checked ' + data['info']['post_count'] + ' of ' + data['info']['total_posts'] + ':');
+      $('#status').text('In progress, checked ' + data['info']['post_count'] + ' of ' + data['info']['total_posts'] + ':');
     } else if (data['state'] == "SUCCESS") {
-      $(status_div).text('Complete: found ' + data['info']['posts'].length + ' untagged posts among ' + data['info']['total_posts'] + ' total.');
+      $('#status').text('Complete: found ' + data['info']['posts'].length + ' untagged posts among ' + data['info']['total_posts'] + ' total.');
     } else if (data['state'] == "FAILURE") {
-      $(status_div).text('Something went wrong.');
+      $('#status').text('Something went wrong.');
     }
 
     // If the task returned a successful response, add any posts
@@ -62,12 +60,11 @@ function update_progress(status_url, status_div, untagged_ul) {
     // a progress update in another second.
     if (data['state'] != "FAILURE" && data['state'] != "SUCCESS") {
       setTimeout(function() {
-        update_progress(status_url, status_div, untagged_ul);
+        update_progress(status_url);
       }, 1000);
     }
   })
 }
-
 
 
 $(function() {
