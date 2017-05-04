@@ -13,4 +13,4 @@ celery.conf.update(app.config)
 
 sess = TumblrSession(api_key=app.config['TUMBLR_API_KEY'])
 
-from . import views
+from . import views  # noqa
