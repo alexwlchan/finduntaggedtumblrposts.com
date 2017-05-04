@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>About the site</h1>
+
+  <p>
+    The idea for this site started in 2013, when a friend was trying to go back and retag her old Tumblr posts.
+    Without a way to easily see all her untagged posts, it was impossible for her to be sure that she was done.
+    I wrote her <a href="http://alexwlchan.net/2013/08/untagged-tumblr-posts/">a Python script</a>, and that was that.
+  </p>
+
+  <p>
+    In 2014, I noticed I was getting a lot of hits to this blog post, but a Python script isn’t very user friendly.
+    I wrote this site to be an easier way to get a list of your untagged posts, because clearly it was something people wanted.
+  </p>
+
+  <p>
+    It's been through a number of iterations &ndash; previously it was written in Angular, then a client-side JavaScript app.
+    The current iteration is a Flask app, served through UWSGI and nginx, and hosted on <a href="https://www.linode.com/?r=ba2e6ce21e0c63952a7c74967ea0b96617bd44a3">Linode</a>.
+    All the source code is on <a href="https://github.com/alexwlchan/untagged-tumblr-posts">GitHub</a> and released under an MIT license.
+  </p>
+
+  <br/>
+
+  <h1>About me</h1>
+
+  <p>
+    Hi, I’m Alex!
+    I'm a software developer, and from time-to-time I do bits of open-source work, or mini projects like this site.
+    You can usually find more up-to-date info <a href="https://alexwlchan.net/about">on my blog</a>.
+  </p>
+
+  <br/>
+{% endblock %}

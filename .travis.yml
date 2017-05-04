@@ -1,0 +1,19 @@
+language: python
+
+sudo: false
+
+cache: pip
+
+matrix:
+  include:
+    - python: "3.6"
+      env: TOXENV=py36
+    - python: "3.6"
+      env: TOXENV=lint
+
+install:
+  - "pip install -U pip setuptools"
+  - "pip install -U tox"
+
+script:
+  - tox -- --hypothesis-profile travis
