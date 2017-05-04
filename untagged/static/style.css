@@ -20,6 +20,9 @@ aside h1 a {
 }
 aside h1 {
   font-size: 1.7em;
+  line-height: 1.3em;
+  margin-top:    0.7em;
+  margin-bottom: 0.7em;
 }
 article, #aside_inner, #footer_inner {
   max-width: 750px;
