@@ -22,6 +22,8 @@ RUN pip3 install -r /requirements.txt
 
 EXPOSE 80
 
+RUN adduser -D -u 501 celery
+
 # Copy in files right at the end.  These are the most likely to change,
 # but they're also fairly fast.
 COPY nginx.conf /etc/nginx/conf.d/

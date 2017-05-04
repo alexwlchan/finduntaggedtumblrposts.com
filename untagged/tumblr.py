@@ -66,10 +66,8 @@ class TumblrSession(requests.Session):
         Gets a list of posts for the given name and offset.
         """
         url = f'{API_ENDPOINT}/blog/{hostname}/posts'
-        print(f'Making request to {url}')
-
         resp = self.get(url, params={'offset': offset})
-        print(f'Received {resp} from Tumblr API')
+        print(f'Received {resp} from Tumblr API for URL {resp.url}')
 
         if resp.status_code != 200:
             raise RuntimeError(
