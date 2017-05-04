@@ -14,6 +14,7 @@ RUN apk update && \
 # a daemon, supervisor would think it had died immediately.
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/conf.d/default.conf
+RUN mkdir -p /run/nginx
 
 # Install Python requirements
 COPY requirements.txt /requirements.txt
