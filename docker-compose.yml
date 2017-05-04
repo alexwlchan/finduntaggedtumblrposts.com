@@ -1,0 +1,9 @@
+version: "2"
+services:
+  redis:
+    image: "redis"
+  web:
+    image: "alexwlchan/untagged"
+    environment:
+      - FLASK_SECRET_KEY
+      - TUMBLR_API_KEY
