@@ -5,5 +5,7 @@ services:
   web:
     image: "alexwlchan/untagged"
     environment:
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
       - FLASK_SECRET_KEY
       - TUMBLR_API_KEY
