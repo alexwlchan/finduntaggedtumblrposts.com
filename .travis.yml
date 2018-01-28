@@ -1,0 +1,21 @@
+language: python
+sudo: false
+
+python: 3.6
+
+branches:
+  only:
+    master
+
+cache: pip
+
+install:
+  - pip install --upgrade pip setuptools
+  - pip install --upgrade requirements.txt
+  - pip install --upgrade test_requirements.txt
+
+before_script:
+  - flake8 --max-complexity 10 .
+
+script:
+  - coverage run -m py.test test_flaskapp.py
