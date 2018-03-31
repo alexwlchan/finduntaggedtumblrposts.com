@@ -26,7 +26,7 @@ serve: .docker/build
 		--name $(SERVE_CONTAINER) \
 		--hostname $(SERVE_CONTAINER) \
 		$(BUILD_IMAGE) \
-		serve --host $(SERVE_CONTAINER) --port 6060 --watch --drafts
+		serve --host $(SERVE_CONTAINER) --port 6060 --watch
 
 deploy: build
 	docker run --rm --tty \
