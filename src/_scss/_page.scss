@@ -1,3 +1,11 @@
 .page__title {
   margin-bottom: 0.1em;
 }
+
+.page__meta {
+  margin-top: -10px;
+  &, a, a:visited {
+    color: $accent-grey;
+  }
+  font-size: $meta-font-size;
+}

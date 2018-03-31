@@ -1,0 +1,58 @@
+input {
+  color: $primary-color;
+  padding: 10px;
+  font-size: 18pt;
+}
+
+button {
+  background-color: #fff;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  text-indent: 0;
+  font-size: 16pt;
+  font-family: Georgia;
+  font-weight: bold;
+  font-style: normal;
+  height: 60px;
+  line-height: 40px;
+  width: 350px;
+  margin-bottom: 10px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid $primary-color;
+  color: $primary-color;
+  margin-top: 25px
+}
+
+#untagged_posts_button {
+  &:hover {
+//    border: 3px solid $primary-color;
+    color: $primary-color;
+    position: relative;
+    top: -1px;
+  }
+
+  &:active {
+    position: relative;
+    top: 3px;
+    background-color: lighten($primary-color, 60%);
+  }
+}
+
+
+@media screen and (min-width:500px) {
+  .styled-select {
+    width: 200px;
+    padding: 5px;
+    margin-left:  5px;
+    margin-right: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border-color: #bbb;
+    border-radius: 3px;
+    height: 38px
+  }
+}
