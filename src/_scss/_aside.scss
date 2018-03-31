@@ -1,5 +1,5 @@
 aside {
-  background: url('/theme/specktre_#{colorToHexString($primary-color)}.png') $primary-color;
+  background: url('/theme/specktre.png') $primary-color;
   background-size: auto 100%;
   @media print {
     background: none;
