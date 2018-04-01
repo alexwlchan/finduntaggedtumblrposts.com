@@ -18,4 +18,4 @@ title: Results
 <div id="status"></div>
 <ol id="posts"></ol>
 
-<script>get_results();</script>
+<script>display_results();</script>

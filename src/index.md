@@ -22,16 +22,16 @@ layout: page
       <option>exclude reblogs</option>
     </select>
     and show
-    <select class="styled-select" id="post_filter">
-      <option>all types of post</option>
-      <option>text posts</option>
-      <option>photo posts</option>
-      <option>quotes</option>
-      <option>link posts</option>
-      <option>chat posts</option>
-      <option>audio posts</option>
-      <option>videos</option>
-      <option>answer posts</option>
+    <select class="styled-select" id="post_type">
+      <option value="all">all types of post</option>
+      <option value="text">text posts</option>
+      <option value="photo">photo posts</option>
+      <option value="quote">quotes</option>
+      <option value="link">link posts</option>
+      <option value="chat">chat posts</option>
+      <option value="audio">audio posts</option>
+      <option value="video">videos</option>
+      <option value="answer">answer posts</option>
     </select>.
   </p>
 </form>
