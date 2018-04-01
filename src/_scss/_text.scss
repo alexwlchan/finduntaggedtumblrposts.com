@@ -1,0 +1,62 @@
+/// This file contains basic styles for body text on the site.
+///
+/// It applies across both pages and posts.  This file should not contain
+/// styles about page layout or positioning.
+
+body {
+  font: 12.5pt $main-font-family;
+  line-height: $line-height;
+  color: $body-color;
+	hanging-punctuation: first;
+}
+
+a {
+  color: $primary-color;
+  &:hover {
+    text-decoration: none;
+  }
+  &:visited {
+    color: $primary-dark;
+  }
+}
+
+h1 {
+  color: $primary-color;
+}
+
+h2 {
+  line-height: $line-height;
+  font-weight: normal;
+  margin-top: 2em;
+}
+
+.title {
+  font-size: 1.9em;
+  font-weight: normal;
+  line-height: 1.45em;
+  a {
+    text-decoration: none;
+  }
+  &.linkpost_title,
+  &.minipost_title {
+    font-size: 1.17em;
+    line-height: 1.35em;
+    padding-top: 12px;
+  }
+  &.linkpost_title {
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    &::after {
+      content: "\a0→";
+      color: $accent-grey;
+    }
+  }
+  a:visited {
+    color: $primary-color;
+  }
+  margin-bottom: -10px;
+}

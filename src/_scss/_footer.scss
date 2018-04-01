@@ -1,0 +1,23 @@
+footer {
+  border-top: 1px solid $light-grey;
+  padding-top:    15px;
+  padding-bottom: 15px;
+
+  @media print {
+    display: none;
+  }
+}
+
+#footer_inner {
+  @include central_element();
+
+  font-size: $meta-font-size;
+  &, a, a:visited {
+    color: $accent-grey;
+  }
+
+  #contact_links, ul.dot_list {
+    display: inline-block;
+    margin-top: 0px;
+  }
+}

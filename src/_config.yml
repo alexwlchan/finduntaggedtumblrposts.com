@@ -1,0 +1,15 @@
+# Site settings
+title: Find Untagged Tumblr Posts
+author: "Alex Chan"
+description: "A way to find untagged posts from your Tumblr site"
+url: "https://finduntaggedtumblrposts.com/"
+
+date_format: "%-d %B %Y"
+
+sass:
+  sass_dir: _scss
+  style: compressed
+
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"
