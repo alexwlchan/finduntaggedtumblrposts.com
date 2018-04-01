@@ -3,6 +3,11 @@
 var API_KEY = "ii4TLRjfMoszcoDkrxBKUk5isHgx0ezQnJ8JWGntYIboVVigez";
 
 
+// Tracking global state this way is quite icky, but it's a remnant of the old
+// code and I don't care enough to fix it right now!
+var untagged_total = 0;
+
+
 // This is called by the form on the front page when the user clicks the
 // "Get My Untagged Posts" button.  It redirects the user to /results.
 function load_results_page() {
@@ -88,7 +93,14 @@ function display_results() {
     offset = null,
     total = null,
     post_type = post_type,
-    success_callback = _initial_resp_callback,
+    success_callback = function(response) {
+      _initial_resp_callback(
+        response = response,
+        api_url = api_url,
+        is_untagged = is_untagged,
+        post_type = post_type,
+      )
+    }
   )
 }
 
@@ -140,8 +152,8 @@ function _make_request(api_url, is_untagged, offset, total, post_type, success_c
 
 
 // Callback for the initial response to the Tumblr API.
-function _initial_resp_callback(response, api_url, is_untagged, offset, total, post_type) {
-  console.log("Calling _initial_resp_callback with response " + response)
+function _initial_resp_callback(response, api_url, is_untagged, post_type) {
+  console.log("Calling _initial_resp_callback with response " + response + "; offset = " + offset + "; total = " + total);
   if (response.meta.status === 200) {
     document.getElementById("first_response").innerHTML = ("<p>I found your blog! Searching for untagged posts:");
 
@@ -156,8 +168,8 @@ function _initial_resp_callback(response, api_url, is_untagged, offset, total, p
     _make_request(
       api_url = api_url,
       is_untagged = is_untagged,
-      offset = offset,
-      total = total,
+      offset = 0,
+      total = response.response.total_posts,
       post_type = post_type,
       success_callback = function(response) {
         _update_page_callback(
@@ -182,7 +194,7 @@ function _initial_resp_callback(response, api_url, is_untagged, offset, total, p
 
 // Callback for subsequent responses from the Tumblr API.
 function _update_page_callback(response, api_url, is_untagged, offset, total, post_type) {
-  console.log("Calling _update_page_callback with response " + response)
+  console.log("Calling _update_page_callback with response " + response + "; offset = " + offset + "; total = " + total);
   for (var i in response.response.posts) {
     var post = response.response.posts[i];
 
@@ -207,7 +219,7 @@ function _update_page_callback(response, api_url, is_untagged, offset, total, po
           response = response,
           api_url = api_url,
           is_untagged = is_untagged,
-          offset = offset,
+          offset = offset + 20,
           total = total,
           post_type = post_type
         )
