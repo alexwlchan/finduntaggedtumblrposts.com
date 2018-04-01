@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Results
+slug: results
 ---
 
 <noscript>

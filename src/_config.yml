@@ -10,6 +10,9 @@ sass:
   sass_dir: _scss
   style: compressed
 
+liquid:
+  error_mode: strict
+
 webrick:
   headers:
     Access-Control-Allow-Origin: "*"
