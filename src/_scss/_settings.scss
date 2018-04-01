@@ -1,4 +1,4 @@
-$primary-color: #20496f !default;
+$primary-color: lighten(#20496f, 10%);
 $primary-dark:  darken($primary-color, 15%);
 
 $main-font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
