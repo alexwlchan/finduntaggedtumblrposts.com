@@ -9,3 +9,7 @@ date_format: "%-d %B %Y"
 sass:
   sass_dir: _scss
   style: compressed
+
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"

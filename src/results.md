@@ -10,7 +10,7 @@ title: Results
   <hr>
 </noscript>
 
-<span id="option_string"></span>
+<span id="request_summary"></span>
 
 <span class="try_again">[Wrong settings? <a href="/">Start again</a>.]</span>
 
