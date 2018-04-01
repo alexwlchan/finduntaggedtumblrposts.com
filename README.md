@@ -18,7 +18,7 @@ You need Git, make and Docker installed.
 To build the site locally:
 
 ```console
-$ git clone git@github.com:alexwlchan/untagged-tumblr-posts.git
+$ git clone git@github.com:alexwlchan/finduntaggedtumblrposts.com.git
 $ make serve
 ```
 
