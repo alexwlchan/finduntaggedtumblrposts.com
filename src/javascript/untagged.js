@@ -65,7 +65,7 @@ function display_results() {
   );
   document.getElementById("request_summary").innerHTML = request_summary;
 
-  var api_url = "http://api.tumblr.com/v2/blog/" + _normalise_hostname(hostname) + "/posts";
+  var api_url = "https://api.tumblr.com/v2/blog/" + _normalise_hostname(hostname) + "/posts";
 
   // Create the function is_untagged() which determines whether a post is
   // eligible for display in the main list.  The function is defined based
