@@ -39,3 +39,5 @@ layout: page
 <center>
   <button type="submit" id="untagged_posts_button" onclick="load_results_page();"> Get my untagged posts!</button>
 </center>
+
+*Psst! If you're worried about the new content moderation policies, I've also written some code for backing up your posts and likes.  Check &rsquo;em out here: [github.com/alexwlchan/backup_tumblr](https://github.com/alexwlchan/backup_tumblr)*
