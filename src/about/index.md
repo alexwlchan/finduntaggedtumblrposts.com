@@ -14,3 +14,5 @@ I wrote this site to be an easier way to get a list of your untagged posts, beca
 All the source code is [on GitHub](https://github.com/alexwlchan/untagged-tumblr-posts), and released under the [MIT license](https://opensource.org/licenses/MIT).
 
 This site is written by me, [alexwlchan](https://alexwlchan.net), and you can learn more about me on [my personal site](https://alexwlchan.net/about/).
+
+If you found this useful, maybe <a href="https://ko-fi.com/alexwlchan" class="kofi">buy me a coffee</a>?
