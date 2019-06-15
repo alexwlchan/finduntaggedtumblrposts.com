@@ -1,3 +1,6 @@
+// See https://more.ko-fi.com/brand-assets
+$brand__kofi: #29ABE0;
+
 footer {
   border-top: 1px solid $light-grey;
   padding-top:    15px;
@@ -16,8 +19,26 @@ footer {
     color: $accent-grey;
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
+
   #contact_links, ul.dot_list {
     display: inline-block;
     margin-top: 0px;
   }
+
+  p:first-child {
+    margin-bottom: 0px;
+  }
+
+  // These definitions have to live in the #footer_inner block so they
+  // override the a:visited style defined above.
+  #footer__email:hover    { color: $primary-color;  }
+  #footer__github:hover   { color: $github-grey;    }
+  #footer__twitter:hover  { color: $twitter-blue;   }
+  #footer__about:hover    { color: $primary-color;  }
+  #footer__cc:hover       { color: black;           }
+  #footer__mit:hover      { color: black;           }
+  #footer__kofi:hover     { color: $brand__kofi;    }
 }

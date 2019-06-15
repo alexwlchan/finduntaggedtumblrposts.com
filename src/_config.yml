@@ -4,6 +4,10 @@ author: "Alex Chan"
 description: "A way to find untagged posts from your Tumblr site"
 url: "https://finduntaggedtumblrposts.com/"
 
+email: "alex@alexwlchan.net"
+github_repo: "https://github.com/alexwlchan/finduntaggedtumblrposts.com"
+twitter: "alexwlchan"
+
 date_format: "%-d %B %Y"
 
 sass:
