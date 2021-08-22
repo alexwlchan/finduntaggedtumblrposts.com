@@ -40,4 +40,4 @@ layout: page
   <button type="submit" id="untagged_posts_button" onclick="load_results_page();"> Get my untagged posts!</button>
 </center>
 
-If you found this useful, maybe <a href="https://ko-fi.com/alexwlchan" class="kofi">buy me a coffee</a>?
+If you found this useful, maybe <a href="https://alexwlchan.net/say-thanks/">say thanks</a>?
