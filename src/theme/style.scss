@@ -4,11 +4,151 @@
 @import "_settings.scss";
 @import "_mixins.scss";
 
-@import "_layout.scss";
-@import "_text.scss";
+body {
+  margin:  0;
+  padding: 0;
+}
+
+article {
+  @include central_element();
+  padding-top:    15px;
+  padding-bottom: 15px;
+}
+
+body {
+  font: 12pt $main-font-family;
+  line-height: $line-height;
+  color: $body-color;
+}
+
+a {
+	@include link_styles($primary-color, 0.2);
+
+  &:visited {
+    @include link_styles($primary-dark, 0.2);
+  }
+}
 
 // Major page components
-@import "_aside.scss";
-@import "_footer.scss";
+aside {
+  background: url('/theme/specktre.png') $primary-color;
+  background-size: auto 100%;
+  @media print {
+    background: none;
+    border-bottom: 2px solid $primary-color;
+  }
 
-@import "_untagged.scss";
+  #aside_inner {
+    @include central_element();
+
+    &, a, a:visited {
+      color: white;
+			font-weight: normal;
+      @media print {
+        color: $primary-color;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+footer {
+  border-top: 1px solid $light-grey;
+  padding-top:    15px;
+  padding-bottom: 15px;
+
+  @media print {
+    display: none;
+  }
+}
+
+#footer_inner {
+  @include central_element();
+
+  font-size: $meta-font-size;
+  &, a, a:visited {
+    color: $accent-grey;
+  }
+
+  #contact_links {
+    display: inline-block;
+    margin-top: 0px;
+  }
+
+  p:first-child {
+    margin-bottom: 0px;
+  }
+
+  // These definitions have to live in the #footer_inner block so they
+  // override the a:visited style defined above.
+  #footer__email:hover    { color: $primary-color;  }
+  #footer__github:hover   { color: $github-grey;    }
+  #footer__twitter:hover  { color: $twitter-blue;   }
+}
+
+// Styles specific to finduntaggedtumblrposts.com
+
+input {
+  color: $primary-color;
+  padding: 10px;
+  font-size: 18pt;
+}
+
+button {
+  background-color: #fff;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  text-indent: 0;
+  font-size: 16pt;
+  font-family: Georgia;
+  font-weight: bold;
+  font-style: normal;
+  height: 60px;
+  line-height: 40px;
+  width: 350px;
+  margin-bottom: 10px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid $primary-color;
+  color: $primary-color;
+  margin-top: 25px
+}
+
+#untagged_posts_button {
+  &:hover {
+    color: $primary-color;
+    position: relative;
+    top: -1px;
+  }
+
+  &:active {
+    position: relative;
+    top: 3px;
+    background-color: lighten($primary-color, 60%);
+  }
+}
+
+
+@media screen and (min-width:500px) {
+  .styled-select {
+    width: 200px;
+    padding: 5px;
+    margin-left:  5px;
+    margin-right: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border-color: #bbb;
+    border-radius: 3px;
+    height: 38px
+  }
+}
+
+.option {
+  font-weight: bold;
+}
