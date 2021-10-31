@@ -29,34 +29,17 @@ function load_results_page() {
     "post_type": post_type,
   }
 
-  var results_url = _build_url_with_qs("/results", parameters = parameters)
-  document.location.href = results_url;
+  display_results(hostname, include_reblogs, post_type);
 }
 
 
 // This is called on /results to display the results to the user.
 //
 // It assumes the user landed on the page via load_results_page().
-function display_results() {
+function display_results(hostname, include_reblogs, post_type) {
   console.log("Calling display_results()");
 
-  // https://stackoverflow.com/a/3855394/1558022
-  var qs = (function(a) {
-    if (a == "") return {};
-    var b = {};
-    for (var i = 0; i < a.length; ++i) {
-      var p=a[i].split('=', 2);
-      if (p.length == 1)
-        b[p[0]] = "";
-      else
-        b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-    }
-    return b;
-  })(window.location.search.substr(1).split('&'));
-
-  var hostname = qs["hostname"];
-  var include_reblogs = qs["include_reblogs"];
-  var post_type = qs["post_type"];
+	document.getElementById("results").style.display = "block";
 
   var request_summary = _get_request_summary(
     hostname = hostname,
@@ -260,25 +243,8 @@ function _get_request_summary(hostname, include_reblogs, post_type) {
 }
 
 
-// Utility function.  Builds a query string.
-// Based on https://stackoverflow.com/q/316781/1558022.
-function _build_url_with_qs(url, parameters) {
-  var qs = "";
-  for (var key in parameters) {
-    var value = parameters[key]
-    qs += encodeURIComponent(key) + "=" + encodeURIComponent(value) + "&";
-  }
-  if (qs.length > 0) {
-    qs = qs.substring(0, qs.length - 1);  // trim the last "&"
-    url = url + "?" + qs;
-  }
-  return url;
-}
-
-
-// Utility function.  Normalises a URL into a hostname to be supplied to
-// the Tumblr API.
-var _normalise_hostname = function(url) {
+// Normalises a URL into a hostname to be passed to the Tumblr API.
+function _normalise_hostname(url) {
   // First strip any http:// or https:// prefix
   url = url.replace(/^http[s]{0,}:\/\//g, "");
 

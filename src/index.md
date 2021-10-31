@@ -39,3 +39,13 @@ layout: default
 <center>
   <button type="submit" id="untagged_posts_button" onclick="load_results_page();"> Get my untagged posts!</button>
 </center>
+
+<div id="results" style="display: none; margin-top: 1em;">
+	<span id="request_summary"></span>
+
+	<span class="try_again">[Wrong settings? <a href="/">Start again</a>.]</span>
+
+	<div id="first_response"></div>
+	<div id="status"></div>
+	<ol id="posts"></ol>
+</div>
