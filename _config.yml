@@ -1,7 +1,6 @@
 # Site settings
 title: Find Untagged Tumblr Posts
 author: "Alex Chan"
-description: "A way to find untagged posts from your Tumblr site"
 url: "https://finduntaggedtumblrposts.com/"
 
 email: "alex@alexwlchan.net"
@@ -19,7 +18,3 @@ sass:
 
 liquid:
   error_mode: strict
-
-webrick:
-  headers:
-    Access-Control-Allow-Origin: "*"
