@@ -11,21 +11,14 @@ aside {
 
     &, a, a:visited {
       color: white;
+			font-weight: normal;
       @media print {
         color: $primary-color;
       }
     }
 
-    a:hover {
+    a {
       text-decoration: none;
-    }
-
-    #brand {
-      font-weight: normal;
-      font-size: 1.7em;
-      a {
-        text-decoration: none;
-      }
     }
   }
 }

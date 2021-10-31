@@ -11,12 +11,10 @@ body {
 }
 
 a {
-  color: $primary-color;
-  &:hover {
-    text-decoration: none;
-  }
+	@include link_styles($primary-color, 0.2);
+
   &:visited {
-    color: $primary-dark;
+    @include link_styles($primary-dark, 0.2);
   }
 }
 
