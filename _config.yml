@@ -10,6 +10,9 @@ twitter: "alexwlchan"
 
 date_format: "%-d %B %Y"
 
+source: "src"
+destination: "_site"
+
 sass:
   sass_dir: _scss
   style: compressed
