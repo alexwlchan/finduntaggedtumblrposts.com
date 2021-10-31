@@ -20,30 +20,16 @@ All the source code is [on GitHub](https://github.com/alexwlchan/untagged-tumblr
 
 ## Building the site
 
-You need Git, make and Docker installed.
+The site is written as a single HTML file, plus a bit of JavaScript and CSS.
 
-To build the site locally:
-
-```console
-$ git clone git@github.com:alexwlchan/finduntaggedtumblrposts.com.git
-$ make serve
-```
-
-The site should be running on <http://localhost:6060>.
-If you make changes to the source files, it will automatically update.
-
-To build a one-off set of static HTML files:
+The original HTML is in the root of the repo; to minify it before pushing I run the command:
 
 ```console
-$ make build
+$ htmlmin index.html site/index.html
 ```
+
+using the [htmlmin library](https://pypi.org/project/htmlmin/).
 
 ## Deploying the site
 
-The site can be deployed with Make:
-
-```console
-$ make deploy
-```
-
-You need to have SSH access to the Linode instance running the site.
+The site is deployed to Netlify by pushing to `main`.
