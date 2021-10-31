@@ -1,13 +1,6 @@
-# Site settings
 title: Find Untagged Tumblr Posts
 author: "Alex Chan"
 url: "https://finduntaggedtumblrposts.com/"
-
-email: "alex@alexwlchan.net"
-github_repo: "https://github.com/alexwlchan/finduntaggedtumblrposts.com"
-twitter: "alexwlchan"
-
-date_format: "%-d %B %Y"
 
 source: "src"
 destination: "_site"
