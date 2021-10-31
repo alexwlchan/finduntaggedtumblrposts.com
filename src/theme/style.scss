@@ -42,7 +42,7 @@ body {
 
 article {
   @include central_element();
-  padding-top:    15px;
+  padding-top:    20px;
   padding-bottom: 15px;
 }
 
@@ -164,6 +164,10 @@ button {
   }
 }
 
+h1 {
+	margin-top:    15px;
+	margin-bottom: 15px;
+}
 
 @media screen and (min-width:500px) {
   .styled-select {
