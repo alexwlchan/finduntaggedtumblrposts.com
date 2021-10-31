@@ -90,28 +90,27 @@ footer {
   border-top: 1px solid $light-grey;
   padding-top:    15px;
   padding-bottom: 15px;
+	
+	p {
+		@include central_element();
+	}
 
   @media print {
     display: none;
   }
-}
-
-#footer_inner {
-  @include central_element();
-
+	
   font-size: $meta-font-size;
   &, a, a:visited {
     color: $accent-grey;
   }
 
-  #contact_links {
-    display: inline-block;
-    margin-top: 0px;
-  }
-
   p:first-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
+	
+	p:last-child {
+		margin-top: 0;
+	}
 
   // These definitions have to live in the #footer_inner block so they
   // override the a:visited style defined above.
