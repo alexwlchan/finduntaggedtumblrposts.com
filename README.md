@@ -1,14 +1,10 @@
 # finduntaggedtumblrposts.com
 
-This repo contains the source code for [finduntaggedtumblrposts.com][root].
-It's a static site built with [Jekyll][jekyll].
-
-For the history of the site, see the site's [about page][about].
+This repo contains the source code for [finduntaggedtumblrposts.com][root], which helps you find untagged posts on Tumblr.
 
 ![A screenshot of the site](screenshot.png)
 
 [root]: https://finduntaggedtumblrposts.com
-[about]: https://finduntaggedtumblrposts.com/about/
 [jekyll]: https://jekyllrb.com/
 
 ## Motivation
