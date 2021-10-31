@@ -5,7 +5,7 @@ It's a static site built with [Jekyll][jekyll].
 
 For the history of the site, see the site's [about page][about].
 
-![](screenshot.png)
+![A screenshot of the site](screenshot.png)
 
 [root]: https://finduntaggedtumblrposts.com
 [about]: https://finduntaggedtumblrposts.com/about/
