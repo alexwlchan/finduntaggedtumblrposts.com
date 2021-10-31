@@ -3,4 +3,4 @@
 .sass-cache
 .jekyll-cache
 
-src/_site
+_site
