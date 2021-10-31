@@ -39,5 +39,3 @@ layout: page
 <center>
   <button type="submit" id="untagged_posts_button" onclick="load_results_page();"> Get my untagged posts!</button>
 </center>
-
-If you found this useful, maybe <a href="https://alexwlchan.net/say-thanks/">say thanks</a>?

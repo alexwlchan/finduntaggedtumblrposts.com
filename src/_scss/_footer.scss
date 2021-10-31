@@ -1,6 +1,3 @@
-// See https://more.ko-fi.com/brand-assets
-$brand__kofi: #29ABE0;
-
 footer {
   border-top: 1px solid $light-grey;
   padding-top:    15px;
@@ -37,8 +34,4 @@ footer {
   #footer__email:hover    { color: $primary-color;  }
   #footer__github:hover   { color: $github-grey;    }
   #footer__twitter:hover  { color: $twitter-blue;   }
-  #footer__about:hover    { color: $primary-color;  }
-  #footer__cc:hover       { color: black;           }
-  #footer__mit:hover      { color: black;           }
-  #footer__kofi:hover     { color: $brand__kofi;    }
 }
