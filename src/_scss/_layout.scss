@@ -8,16 +8,3 @@ article {
   padding-top:    3px;
   padding-bottom: 15px;
 }
-
-.dot_list {
-  list-style-type: none;
-  padding-left: 0px !important;
-
-  // Ensure they all display in a line
-  li {
-    display: inline;
-    &:not(:first-child)::before {
-      content: " · ";
-    }
-  }
-}
