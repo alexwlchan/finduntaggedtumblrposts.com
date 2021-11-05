@@ -14,19 +14,13 @@ function load_results_page() {
 
   var hostname = document.getElementById("hostname").value;
   var include_reblogs = (
-    document.getElementById("reblog_filter").value == "include reblogs"
+    document.getElementById("reblog_filter").value === "include reblogs"
   );
   var post_type = document.getElementById("post_type").value.split(" ")[0];
 
   if (hostname == "") {
     alert("Please enter a URL!");
     return;
-  }
-
-  var parameters = {
-    "hostname": hostname,
-    "include_reblogs": include_reblogs,
-    "post_type": post_type,
   }
 
   display_results(hostname, include_reblogs, post_type);
@@ -226,7 +220,7 @@ function _get_request_summary(hostname, include_reblogs, post_type) {
   var optString = "Getting untagged posts for <span class=\"option\">" + hostname + "</span> which ";
 
   optString += "<span class=\"option\">";
-  if (include_reblogs == "true") {
+  if (include_reblogs === true) {
     optString += "include";
   } else {
     optString += "exclude";
