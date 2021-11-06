@@ -48,7 +48,7 @@ function display_results(hostname, include_reblogs, post_type) {
   // eligible for display in the main list.  The function is defined based
   // on the query parameters, rather than a single definition that uses
   // lots of branches -- this is probably much faster in the long run.
-  if (include_reblogs == "true") {
+  if (include_reblogs === true) {
 
     // If we're including all posts and reblogs, then we just have to
     // look at the length of the tags attribute
