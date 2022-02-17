@@ -1,5 +1,5 @@
 [build]
-  base = "site/"
+  base = ""
   publish = "site/"
 
 [build.processing.css]
