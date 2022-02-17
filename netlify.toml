@@ -2,14 +2,8 @@
   base = ""
   publish = "site/"
 
-[build.processing.css]
-  minify = true
-
-[build.processing.js]
-  minify = true
-
 [[headers]]
-  for = "/theme"
+  for = "/theme/*"
 
   [headers.values]
 		cache-control = "public, max-age=31536000"
