@@ -32,8 +32,4 @@ using the [htmlmin library](https://pypi.org/project/htmlmin/).
 
 ## Deploying the site
 
-The site is deployed to my web server by running
-
-```console
-$ rsync -r site/ helene.linode:sites/finduntaggedtumblrposts.com/
-```
+The site is run from my web server `harmonia`.
