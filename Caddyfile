@@ -15,7 +15,7 @@ finduntaggedtumblrposts.com {
 	# I test my security headers with https://securityheaders.com/
 	header {
 		# https://scotthelme.co.uk/hardening-your-http-response-headers/#content-security-policy
-		Content-Security-Policy "default-src ; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src https://analytics.alexwlchan.net/;"
+		Content-Security-Policy "default-src ; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src https://analytics.alexwlchan.net/ https://api.tumblr.com/;"
 
 		# https://scotthelme.co.uk/a-new-security-header-feature-policy/
 		# https://scotthelme.co.uk/goodbye-feature-policy-and-hello-permissions-policy/
